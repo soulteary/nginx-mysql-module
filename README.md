@@ -1,8 +1,8 @@
 # Nginx MySQL Module
 
-(c) 2012 Arutyunyan Roman (arut@qip.ru)
-(c) 2012 DenoFiend zhao (denofiend@gmail.com) (add transaction support in mysql)
-(c) 2015 ideal (https://github.com/ideal) (bugfix for close mysql and ngx_http_mysql_cleanup)
+- (c) 2012 Arutyunyan Roman (arut@qip.ru)
+- (c) 2012 DenoFiend zhao (denofiend@gmail.com) (add transaction support in mysql)
+- (c) 2015 ideal (https://github.com/ideal) (bugfix for close mysql and ngx_http_mysql_cleanup)
 
 
 == MySQL support in NGINX ==
