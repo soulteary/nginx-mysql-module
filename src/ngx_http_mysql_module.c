@@ -533,8 +533,6 @@ char* ngx_http_mysql_escape(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 	return NGX_CONF_OK;
 }
 
-static void ngx_http_mysql_cleanup(void *data);
-
 ngx_int_t ngx_http_mysql_init(ngx_conf_t *cf) 
 {
 	ngx_http_core_main_conf_t *cmcf;
@@ -552,7 +550,7 @@ ngx_int_t ngx_http_mysql_init(ngx_conf_t *cf)
 	return NGX_OK;
 }
 
-static void ngx_http_mysql_cleanup(void *data)
+void ngx_http_mysql_cleanup(void *data)
 {
 	ngx_http_mysql_node_t *p, *nodes;
 

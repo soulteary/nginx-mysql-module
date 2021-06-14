@@ -109,6 +109,8 @@ char* ngx_http_mysql_transaction(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
 char* ngx_http_mysql_subrequest(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 char* ngx_http_mysql_escape(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
 
+void ngx_http_mysql_cleanup(void *data);
+
 ngx_int_t ngx_http_mysql_init(ngx_conf_t *cf);
 
 #endif /* _NGX_MYSQL_MODULE_H_ */
