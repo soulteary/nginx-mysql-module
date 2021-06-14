@@ -1,4 +1,4 @@
-nginx-mysql-module
+# Nginx MySQL Module
 
 (c) 2012 Arutyunyan Roman (arut@qip.ru)
 (c) 2012 DenoFiend zhao (denofiend@gmail.com) (add transaction support in mysql)
@@ -15,33 +15,38 @@ nginx-mysql-module
 * requires ngx_rds_json module(https://github.com/denofiend/rds-json-nginx-module)
 
 
-NGINX configure:
+## NGINX configure
 
+```bash
 ./configure --add-module=/path/to/nginx-mysql-module/ --add-module=/path/to/nginx-mtask-module/ --add-module=/path/to/rds-json-nginx-module/
+```
 
-Usage examples:
+## Usage examples
 
 MySQL:
-	
-	USE test;
 
-	CREATE TABLE `users` (
-			`name` varchar(128) DEFAULT NULL,
-			`id` int(11) NOT NULL auto_increment,  PRIMARY KEY (`id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+```mysql	
+USE test;
 
-	CREATE TABLE `a` (
-			`id` int(11) NOT NULL DEFAULT '0',
-			PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+CREATE TABLE `users` (
+  `name` varchar(128) DEFAULT NULL,
+  `id` int(11) NOT NULL auto_increment,  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-	CREATE TABLE `b` (
-			`id` bigint(20) NOT NULL,
-			`name` varchar(128) NOT NULL
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `a` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+
+CREATE TABLE `b` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
 nginx.conf:
 
+```nginx
 http {
 
 	...
@@ -164,33 +169,35 @@ http {
 	...
 
 }
-
+```
 
 access:
- curl 'http://localhost:8080/test/insert?id=1&val=test_case_1'
- {"errcode":0}
- 
- curl 'http://localhost:8080/test/insert?id=2&val=test_case_2'
- {"errcode":0}
 
- curl 'http://localhost:8080/test/select'
- {"ids":[{"id":1,"name":"test_case_1"},{"id":2,"name":"test_case_2"}]}
+```bash
+curl 'http://localhost:8080/test/insert?id=1&val=test_case_1'
+{"errcode":0}
 
- curl 'localhost:8080/insert?name=foo'
- 11
+curl 'http://localhost:8080/test/insert?id=2&val=test_case_2'
+{"errcode":0}
 
- curl 'localhost:8080/select?id=11'
- foo
- 
- curl 'localhost:8080/update?id=11&name=bar'
- <nothing>
+curl 'http://localhost:8080/test/select'
+{"ids":[{"id":1,"name":"test_case_1"},{"id":2,"name":"test_case_2"}]}
 
- curl 'localhost:8080/select?id=11'
- bar
+curl 'localhost:8080/insert?name=foo'
+11
 
- curl 'localhost:8080/delete?id=11'
- <nothing>
- 
- curl 'localhost:8080/select?id=11'
- <nothing>
+curl 'localhost:8080/select?id=11'
+foo
 
+curl 'localhost:8080/update?id=11&name=bar'
+<nothing>
+
+curl 'localhost:8080/select?id=11'
+bar
+
+curl 'localhost:8080/delete?id=11'
+<nothing>
+
+curl 'localhost:8080/select?id=11'
+<nothing>
+```
